@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
     use HasFactory;
+    /**
+     * Atributos que são atribuidos em massa.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'description'
+    ];
 }

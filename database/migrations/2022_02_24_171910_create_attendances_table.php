@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
+            $table->foreign("user_id")->references("id")->on("employees");
             $table->timestamps();
         });
     }

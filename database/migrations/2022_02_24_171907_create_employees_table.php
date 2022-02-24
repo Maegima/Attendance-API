@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
+            $table->string("name", 255);
+            $table->string("cpf", 255)->unique();
+            $table->string("username", 50)->unique();
+            $table->string("password", 50);
+            $table->boolean("active")->default(true);
+            $table->foreign("type")->references("id")->on("permissions");
             $table->timestamps();
         });
     }
