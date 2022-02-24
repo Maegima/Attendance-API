@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string("name", 255);
             $table->string("cpf", 255)->unique();
-            $table->string("username", 50)->unique();
+            $table->string("email", 50)->unique();
+            $table->string("remember_token", 100)->unique();
             $table->string("password", 50);
             $table->boolean("active")->default(true);
-            $table->foreign("type")->references("id")->on("permissions");
+            $table->foreignId("type")->constrained("permissions");
             $table->timestamps();
         });
     }

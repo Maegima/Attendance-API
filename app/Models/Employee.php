@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class Employee extends Model
+class Employee extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
     /**
      * Atributos que são atribuidos em massa.
      *
@@ -16,7 +18,7 @@ class Employee extends Model
     protected $fillable = [
         'name',
         'cpf',
-        'username',
+        'email',
         'password'
     ];
 
@@ -26,6 +28,7 @@ class Employee extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'password'
+        'password',
+        'remember_token'
     ];
 }
