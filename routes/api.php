@@ -22,38 +22,43 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/* Rota utilizada quando uma rota é acessada com token invalido */
+Route::get('unauthorized', function(){
+    return response('{"message": "Unauthorized."}', 403);
+})->name("unauthorized");
+
 /////////////////////
 // Attendances Routes
 /////////////////////
+Route::middleware('auth2:sanctum')->group(function(){
+    Route::get("/attendances", [AttendanceControler::class, 'index']);
 
-Route::get("/attendances", [AttendanceControler::class, 'index']);
+    Route::get("/attendances/{id}", [AttendanceControler::class, 'show']);
 
-Route::get("/attendances/{id}", [AttendanceControler::class, 'show']);
+    Route::post("/attendances", [AttendanceControler::class, 'store']);
 
-Route::post("/attendances", [AttendanceControler::class, 'store']);
+    Route::put("/attendances/{id}", [AttendanceControler::class, 'update']);
 
-Route::put("/attendances/{id}", [AttendanceControler::class, 'update']);
-
-Route::delete("/attendances/{id}", [AttendanceControler::class, 'delete']);
-
+    Route::delete("/attendances/{id}", [AttendanceControler::class, 'delete']);
+});
 ////////////////////
 
 
 /////////////////////
 // Employee Routes
 /////////////////////
+Route::middleware('auth2:sanctum')->group(function(){
+    Route::get("/employees/{id}", [EmployeeControler::class, 'show']);
 
-Route::get("/employees/{id}", [EmployeeControler::class, 'show']);
-
-Route::post("/employees", [EmployeeControler::class, 'store']);
-
+    Route::post("/employees", [EmployeeControler::class, 'store']);
+});
 /////////////////////
 
 
 /////////////////////
 // Permission Routes
 /////////////////////
-
-Route::get("/permissions", [EmployeeControler::class, 'index']);
-
+Route::middleware('auth2:sanctum')->group(function(){
+    Route::get("/permissions", [EmployeeControler::class, 'index']);
+});
 /////////////////////
