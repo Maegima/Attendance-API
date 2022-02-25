@@ -16,3 +16,11 @@ curl -X GET -H 'Content-type: application/json' \
 -H 'Authorization: Bearer QlcNxVnB4JsoOpI7lsmg7pJgjVPU9juJ2odbsnzYCKbTvIPFkHW5I1ZoPgevDfWdZ8Y4LKcQzXp74YGh0HCzvA5gOVhCPDR7sDUu' \
 localhost:8000/api/permissions
 
+curl -X GET -H 'Content-type: application/json' \
+-H 'Authorization: Bearer QlcNxVnB4JsoOpI7lsmg7pJgjVPU9juJ2odbsnzYCKbTvIPFkHW5I1ZoPgevDfWdZ8Y4LKcQzXp74YGh0HCzvA5gOVhCPDR7sDUu' \
+"localhost:8000/api/attendances?begin=2022-01-25&end=2022-01-28"
+
+curl -X POST -H 'Content-type: application/json' \
+-H 'Authorization: Bearer QlcNxVnB4JsoOpI7lsmg7pJgjVPU9juJ2odbsnzYCKbTvIPFkHW5I1ZoPgevDfWdZ8Y4LKcQzXp74YGh0HCzvA5gOVhCPDR7sDUu' \
+"localhost:8000/api/attendances" -d \
+'{"cpf": "12345678901"}'
