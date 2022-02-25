@@ -9,6 +9,13 @@ use App\Models\Employee;
 
 class AuthenticationController extends Controller
 {
+    /**
+     * Realização de login e geração de token ao receber
+     * username e password via requisição.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
     public function login(Request $request)
     {
         $username = $request->username;
@@ -22,6 +29,12 @@ class AuthenticationController extends Controller
         return route("unauthorized");
     }
 
+    /**
+     * Realização de logout removendo o token do banco de dados.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
     public function logout(Request $request)
     {
         $authorization = $request->header('Authorization');
