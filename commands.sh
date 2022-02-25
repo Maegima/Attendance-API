@@ -27,4 +27,5 @@ curl -X POST -H 'Content-type: application/json' \
 curl -X POST -H 'Content-type: application/json' \
 -H "Authorization: Bearer $token" \
 "localhost:8000/api/attendances" -d \
-'{"cpf": "12345678902", "updated_at": "2022-02-25T16:00:00"}'
+'{"cpf": "12345678902", "created_at": "2022-02-25T16:00:00"}'
+

@@ -31,11 +31,6 @@ localhost:8000/api/permissions`
 -H 'Authorization: Bearer <token>'
 "localhost:8000/api/attendances" -d
 '{"cpf": "12345678901"}'`
-ou
-`curl -X POST -H 'Content-type: application/json'
--H 'Authorization: Bearer <token>'
-"localhost:8000/api/attendances" -d
-'{"user_id": "1"}'`
 ### Lista presenças (Admin)
 `curl -X GET -H 'Content-type: application/json'
 -H 'Authorization: Bearer <token>'
@@ -48,7 +43,7 @@ ou
 `curl -X PUT -H 'Content-type: application/json'
 -H 'Authorization: Bearer <token>'
 "localhost:8000/api/attendances/1" -d
-'{"create_at": "2022-02-25 11:54:34.411"}'`
+'{"created_at": "2022-02-25T16:00:00"}'`
 
 ### Remove presença (Admin)
 `curl -X DELETE -H 'Content-type: application/json'
