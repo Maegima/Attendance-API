@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string("remember_token", 100)->unique()->nullable()->default(null);
             $table->string("password", 64);
             $table->boolean("active")->default(true);
-            $table->foreignId("type")->default(0)->constrained("permissions");
+            $table->foreignId("type")->default(1)->constrained("permissions");
             $table->timestamps();
         });
     }

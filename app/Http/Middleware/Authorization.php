@@ -36,7 +36,7 @@ class Authorization extends Authenticate2
     protected function authorizate($request, $token)
     {
         $user = Employee::where('remember_token', $token)->first();
-        if($user && $user->type == 1){
+        if($user && $user->type == 2){
             return;
         }
 

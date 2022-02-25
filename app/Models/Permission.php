@@ -17,4 +17,5 @@ class Permission extends Model
         'name',
         'description'
     ];
+    public $timestamps = false;
 }
