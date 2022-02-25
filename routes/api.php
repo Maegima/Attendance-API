@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AttendanceControler;
 use App\Http\Controllers\EmployeeControler;
 use App\Http\Controllers\PermissionControler;
-
+use App\Http\Controllers\AuthenticationController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,8 +51,8 @@ Route::middleware('auth2:sanctum')->group(function(){
 Route::middleware('auth2:sanctum')->group(function(){
     Route::get("/employees/{id}", [EmployeeControler::class, 'show']);
 
-    Route::post("/employees", [EmployeeControler::class, 'store']);
 });
+Route::post("/employees", [EmployeeControler::class, 'store']);
 /////////////////////
 
 
@@ -59,6 +60,18 @@ Route::middleware('auth2:sanctum')->group(function(){
 // Permission Routes
 /////////////////////
 Route::middleware('auth2:sanctum')->group(function(){
-    Route::get("/permissions", [EmployeeControler::class, 'index']);
+    Route::get("/permissions", [PermissionControler::class, 'index']);
+});
+/////////////////////
+
+
+/////////////////////
+// Authentication Routes
+/////////////////////
+
+Route::post('login', [AuthenticationController::class, 'login']);
+
+Route::middleware('auth2:sanctum')->group(function(){
+    Route::post('logout', [AuthenticationController::class, 'logout']);
 });
 /////////////////////

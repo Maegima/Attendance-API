@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string("name", 255);
             $table->string("cpf", 255)->unique();
             $table->string("email", 50)->unique();
-            $table->string("remember_token", 100)->unique();
-            $table->string("password", 50);
+            $table->string("remember_token", 100)->unique()->nullable()->default(null);
+            $table->string("password", 64);
             $table->boolean("active")->default(true);
-            $table->foreignId("type")->constrained("permissions");
+            $table->foreignId("type")->default(0)->constrained("permissions");
             $table->timestamps();
         });
     }

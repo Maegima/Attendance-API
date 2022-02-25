@@ -14,6 +14,8 @@ class EmployeeControler extends Controller
 
     public function store(Request $request)
     {
-        return Employee::create($request->all());
+        $all = $request->all();
+        $all["password"] = Hash("sha256", str($request->password), false);
+        return Employee::create($all);
     }
 }
