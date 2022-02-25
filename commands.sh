@@ -10,8 +10,6 @@ curl -X POST -H 'Content-type: application/json' \
 localhost:8000/api/login -d \
 '{"username": "Andre", "password": "12345"}'
 
-
-
 curl -X GET -H 'Content-type: application/json' \
 -H 'Authorization: Bearer QlcNxVnB4JsoOpI7lsmg7pJgjVPU9juJ2odbsnzYCKbTvIPFkHW5I1ZoPgevDfWdZ8Y4LKcQzXp74YGh0HCzvA5gOVhCPDR7sDUu' \
 localhost:8000/api/permissions

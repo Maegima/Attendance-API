@@ -1,3 +1,64 @@
+## Attendance Project
+Ferramenta criada para gerenciamento de presença.
+
+### Execução
+`php artisan migrate`
+`php artisan serve`
+
+### Requisições
+#### Login (Todos Usuários)
+`curl -X POST -H 'Content-type: application/json'
+localhost:8000/api/login -d
+'{"username": "username", "password": "password"}'`
+
+#### Registra presença (Todos Usuários)
+`curl -X POST -H 'Content-type: application/json'
+-H 'Authorization: Bearer <token>'
+"localhost:8000/api/attendances/chekin" -d
+'{"cpf": "12345678901"}'`
+ou
+`curl -X POST -H 'Content-type: application/json'
+-H 'Authorization: Bearer <token>'
+"localhost:8000/api/attendances/chekin" -d
+'{"user_id": "1"}'`
+#### Registrar usuário (Admin)
+`curl -X GET -H 'Content-type: application/json'
+-H 'Authorization: Bearer <token>
+localhost:8000/api/permissions`
+#### Registra presença (Admin)
+`curl -X POST -H 'Content-type: application/json'
+-H 'Authorization: Bearer <token>'
+"localhost:8000/api/attendances" -d
+'{"cpf": "12345678901"}'`
+ou
+`curl -X POST -H 'Content-type: application/json'
+-H 'Authorization: Bearer <token>'
+"localhost:8000/api/attendances" -d
+'{"user_id": "1"}'`
+### Lista presenças (Admin)
+`curl -X GET -H 'Content-type: application/json'
+-H 'Authorization: Bearer <token>'
+"localhost:8000/api/attendances"`
+ou
+`curl -X GET -H 'Content-type: application/json'
+-H 'Authorization: Bearer <token>'
+"localhost:8000/api/attendances?begin=2022-01-25&end=2022-01-28"`
+### Edita presença (Admin)
+`curl -X PUT -H 'Content-type: application/json'
+-H 'Authorization: Bearer <token>'
+"localhost:8000/api/attendances/1" -d
+'{"create_at": "2022-02-25 11:54:34.411"}'`
+
+### Remove presença (Admin)
+`curl -X DELETE -H 'Content-type: application/json'
+-H 'Authorization: Bearer <token>'
+"localhost:8000/api/attendances/1"`
+
+### Exibe presença (Admin)
+`curl -X GET -H 'Content-type: application/json'
+-H 'Authorization: Bearer <token>'
+"localhost:8000/api/attendances/1"`
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
