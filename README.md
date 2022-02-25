@@ -3,13 +3,14 @@ Ferramenta criada para gerenciamento de presença.
 
 ### Execução
 `php artisan migrate`
+`php artisan db:seed`
 `php artisan serve`
 
 ### Requisições
 #### Login (Todos Usuários)
 `curl -X POST -H 'Content-type: application/json'
 localhost:8000/api/login -d
-'{"username": "username", "password": "password"}'`
+'{"username": "Admin", "password": "password"}'`
 
 #### Registra presença (Todos Usuários)
 `curl -X POST -H 'Content-type: application/json'
