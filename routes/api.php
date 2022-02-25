@@ -19,59 +19,52 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 /* Rota utilizada quando uma rota é acessada com token invalido */
 Route::get('unauthorized', function(){
     return response('{"message": "Unauthorized."}', 403);
 })->name("unauthorized");
 
 /////////////////////
-// Attendances Routes
-/////////////////////
-Route::middleware('auth2:sanctum')->group(function(){
-    Route::get("/attendances", [AttendanceControler::class, 'index']);
-
-    Route::get("/attendances/{id}", [AttendanceControler::class, 'show']);
-
-    Route::post("/attendances", [AttendanceControler::class, 'store']);
-
-    Route::put("/attendances/{id}", [AttendanceControler::class, 'update']);
-
-    Route::delete("/attendances/{id}", [AttendanceControler::class, 'delete']);
-});
-////////////////////
-
-
-/////////////////////
-// Employee Routes
-/////////////////////
-Route::middleware('auth2:sanctum')->group(function(){
-    Route::get("/employees/{id}", [EmployeeControler::class, 'show']);
-
-});
-Route::post("/employees", [EmployeeControler::class, 'store']);
-/////////////////////
-
-
-/////////////////////
-// Permission Routes
-/////////////////////
-Route::middleware('auth2:sanctum')->group(function(){
-    Route::get("/permissions", [PermissionControler::class, 'index']);
-});
-/////////////////////
-
-
-/////////////////////
 // Authentication Routes
 /////////////////////
-
 Route::post('login', [AuthenticationController::class, 'login']);
 
-Route::middleware('auth2:sanctum')->group(function(){
-    Route::post('logout', [AuthenticationController::class, 'logout']);
+/* Rotas que só podem ser acessadas pelos administradores.*/
+Route::middleware('authorization:sanctum')->group(function(){
+    /////////////////////
+    // Attendance Routes
+    /////////////////////
+    Route::get("/attendances", [AttendanceControler::class, 'index']);
+    Route::get("/attendances/{id}", [AttendanceControler::class, 'show']);
+    Route::post("/attendances", [AttendanceControler::class, 'store']);
+    Route::put("/attendances/{id}", [AttendanceControler::class, 'update']);
+    Route::delete("/attendances/{id}", [AttendanceControler::class, 'delete']);
+    
+    /////////////////////
+    // Employees Routes
+    /////////////////////
+    Route::post("/employees", [EmployeeControler::class, 'store']);
 });
-/////////////////////
+
+/* Rotas que podem ser acessadas por usuários logados. */
+Route::middleware('auth2:sanctum')->group(function(){
+    /////////////////////
+    // Authentication Routes
+    /////////////////////
+    Route::post('logout', [AuthenticationController::class, 'logout']);
+    
+    /////////////////////
+    // Permission Routes
+    /////////////////////
+    Route::get("/permissions", [PermissionControler::class, 'index']);
+
+    /////////////////////
+    // Attendance Routes
+    /////////////////////
+    Route::post("/attendances/checkin", [AttendanceControler::class, 'store']);
+
+    /////////////////////
+    // Employees Routes
+    /////////////////////
+    Route::get("/employees/{id}", [EmployeeControler::class, 'show']);
+});
