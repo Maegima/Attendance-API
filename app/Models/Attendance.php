@@ -14,6 +14,8 @@ class Attendance extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id'
+        'user_id',
+        'created_at',
+        'updated_at'
     ];
 }

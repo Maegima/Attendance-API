@@ -54,6 +54,22 @@ class AttendanceControler extends Controller
     }
 
     /**
+     * Adiciona uma presença utilizando cpf do funcionário recebido na requisição.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
+    public function checkin(Request $request)
+    {
+        $all = $request->all();
+        if(array_key_exists("cpf", $all)){
+            $user = Employee::where("cpf", $all["cpf"])->firstOrFail();
+            $all = ["user_id" => $user->id];
+        }
+        return Attendance::create($all);
+    }
+
+    /**
      * Atualiza uma presença utilizando o id da presença.
      *
      * @param  \Illuminate\Http\Request  $request

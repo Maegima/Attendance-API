@@ -61,7 +61,7 @@ Route::middleware('auth2:sanctum')->group(function(){
     /////////////////////
     // Attendance Routes
     /////////////////////
-    Route::post("/attendances/checkin", [AttendanceControler::class, 'store']);
+    Route::post("/attendances/checkin", [AttendanceControler::class, 'checkin']);
 
     /////////////////////
     // Employees Routes
